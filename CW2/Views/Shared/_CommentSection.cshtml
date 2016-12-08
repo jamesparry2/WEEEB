@@ -1,0 +1,24 @@
+﻿@model IEnumerable<CW2.Models.Comment>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CommentDes)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommentDes)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Comments", new { id = item.Id }, null) |
+                @Html.ActionLink("Delete", "Delete", "Comments" , new { id = item.Id }, null)
+            </td>
+        </tr>
+    }
+</table>
+

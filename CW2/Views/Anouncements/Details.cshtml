@@ -1,0 +1,76 @@
+﻿@model CW2.Models.AnouncementDetailView
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Anouncement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(m => m.announcement.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.announcement.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.announcement.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.announcement.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.announcement.CountRe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.announcement.CountRe)
+        </dd>
+
+    </dl>
+</div>
+
+
+<div id = "tableDiv">@Html.Action("BuildTable", new { id = Url.RequestContext.RouteData.Values["id"] } )</div>
+
+<div id="createTable">
+    @using (Ajax.BeginForm("AJAXCreate", "Comments", new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST",
+        UpdateTargetId = "tableDiv"
+    }))
+    {
+        <div class="form-group">
+            @Html.AntiForgeryToken()
+            @Html.LabelFor(model => model.comment.CommentDes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.comment.CommentDes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.comment.CommentDes, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.comment.CompareFig, new { Value = Url.RequestContext.RouteData.Values["id"] })
+            </div>
+        </div>
+    }
+</div>
+
+
+
+    <br />
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.announcement.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+
+    @section Scripts{
+        <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+        <script src="~/Custom_Scripts/BuildAnounce.js"></script>
+        @Scripts.Render("~/bundles/jqueryval")
+    }

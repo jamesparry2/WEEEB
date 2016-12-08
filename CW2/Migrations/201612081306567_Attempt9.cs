@@ -1,0 +1,20 @@
+namespace CW2.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class Attempt9 : DbMigration
+    {
+        public override void Up()
+        {
+            AddColumn("dbo.Anouncements", "CountRe", c => c.Int(nullable: false));
+            DropColumn("dbo.Anouncements", "isRead");
+        }
+        
+        public override void Down()
+        {
+            AddColumn("dbo.Anouncements", "isRead", c => c.Boolean(nullable: false));
+            DropColumn("dbo.Anouncements", "CountRe");
+        }
+    }
+}
