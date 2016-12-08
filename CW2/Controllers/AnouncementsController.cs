@@ -36,17 +36,19 @@ namespace CW2.Controllers
         public ActionResult Details(int? id)
         {
             AnouncementDetailView vm = new AnouncementDetailView();
-            StudentRead checkRead = new StudentRead();
+            StudentRead read = new StudentRead();
             Anouncement anouncement = db.Anouncements.Find(id);
 
+            //Finds which user we got
             string currentUser = User.Identity.GetUserId();
             ApplicationUser user = db.Users.FirstOrDefault(x => x.Id == currentUser);
 
-            if (!user.Equals(checkRead.UserId))
+            if(read.AnnounceId != anouncement && read.UserId != user)
             {
                 anouncement.CountRe++;
-                checkRead.UserId = user;
-                db.StudentRead.Add(checkRead);
+                read.UserId = user;
+                read.AnnounceId = anouncement;
+                db.StudentRead.Add(read);
                 db.SaveChanges();
             }
 

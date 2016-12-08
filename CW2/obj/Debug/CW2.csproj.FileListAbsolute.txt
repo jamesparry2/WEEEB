@@ -80,12 +80,6 @@ c:\users\james\documents\visual studio 2015\Projects\CW2\CW2\bin\Microsoft.Owin.
 c:\users\james\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.csprojResolveAssemblyReference.cache
 c:\users\james\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.dll
 c:\users\james\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.pdb
+C:\Users\James\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.Migrations.Att11.resources
 C:\Users\James\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.csproj.GenerateResource.Cache
-C:\Users\James\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.Migrations.Attempt1.resources
-C:\Users\James\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.Migrations.Attempt2.resources
-C:\Users\James\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.Migrations.Attempt3.resources
-C:\Users\James\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.Migrations.Attempt31.resources
-C:\Users\James\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.Migrations.Attempt4.resources
-C:\Users\James\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.Migrations.Attempt5.resources
-C:\Users\James\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.Migrations.Attempt8.resources
-C:\Users\James\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.Migrations.Attempt9.resources
+C:\Users\James\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.Migrations.Att111.resources

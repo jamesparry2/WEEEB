@@ -203,37 +203,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612081045383_Attempt1.cs" />
-    <Compile Include="Migrations\201612081045383_Attempt1.Designer.cs">
-      <DependentUpon>201612081045383_Attempt1.cs</DependentUpon>
+    <Compile Include="Migrations\201612081505352_Att11.cs" />
+    <Compile Include="Migrations\201612081505352_Att11.Designer.cs">
+      <DependentUpon>201612081505352_Att11.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612081155399_Attempt2.cs" />
-    <Compile Include="Migrations\201612081155399_Attempt2.Designer.cs">
-      <DependentUpon>201612081155399_Attempt2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612081248214_Attempt3.cs" />
-    <Compile Include="Migrations\201612081248214_Attempt3.Designer.cs">
-      <DependentUpon>201612081248214_Attempt3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612081249324_Attempt31.cs" />
-    <Compile Include="Migrations\201612081249324_Attempt31.Designer.cs">
-      <DependentUpon>201612081249324_Attempt31.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612081250069_Attempt4.cs" />
-    <Compile Include="Migrations\201612081250069_Attempt4.Designer.cs">
-      <DependentUpon>201612081250069_Attempt4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612081254535_Attempt5.cs" />
-    <Compile Include="Migrations\201612081254535_Attempt5.Designer.cs">
-      <DependentUpon>201612081254535_Attempt5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612081303358_Attempt8.cs" />
-    <Compile Include="Migrations\201612081303358_Attempt8.Designer.cs">
-      <DependentUpon>201612081303358_Attempt8.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612081306567_Attempt9.cs" />
-    <Compile Include="Migrations\201612081306567_Attempt9.Designer.cs">
-      <DependentUpon>201612081306567_Attempt9.cs</DependentUpon>
+    <Compile Include="Migrations\201612081539067_Att111.cs" />
+    <Compile Include="Migrations\201612081539067_Att111.Designer.cs">
+      <DependentUpon>201612081539067_Att111.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -332,29 +308,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612081045383_Attempt1.resx">
-      <DependentUpon>201612081045383_Attempt1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612081505352_Att11.resx">
+      <DependentUpon>201612081505352_Att11.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612081155399_Attempt2.resx">
-      <DependentUpon>201612081155399_Attempt2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612081248214_Attempt3.resx">
-      <DependentUpon>201612081248214_Attempt3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612081249324_Attempt31.resx">
-      <DependentUpon>201612081249324_Attempt31.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612081250069_Attempt4.resx">
-      <DependentUpon>201612081250069_Attempt4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612081254535_Attempt5.resx">
-      <DependentUpon>201612081254535_Attempt5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612081303358_Attempt8.resx">
-      <DependentUpon>201612081303358_Attempt8.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612081306567_Attempt9.resx">
-      <DependentUpon>201612081306567_Attempt9.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612081539067_Att111.resx">
+      <DependentUpon>201612081539067_Att111.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
