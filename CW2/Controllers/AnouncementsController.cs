@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CW2.Models;
+using System.Web.Routing;
 using Microsoft.AspNet.Identity;
 
 namespace CW2.Controllers
@@ -36,19 +37,22 @@ namespace CW2.Controllers
         public ActionResult Details(int? id)
         {
             AnouncementDetailView vm = new AnouncementDetailView();
-            StudentRead read = new StudentRead();
             Anouncement anouncement = db.Anouncements.Find(id);
+            StudentRead read1 = new StudentRead();
 
             //Finds which user we got
             string currentUser = User.Identity.GetUserId();
             ApplicationUser user = db.Users.FirstOrDefault(x => x.Id == currentUser);
 
-            if(read.AnnounceId != anouncement && read.UserId != user)
+            StudentRead read = db.StudentRead.FirstOrDefault(x => x.UserId.Id == currentUser);
+            StudentRead read2 = db.StudentRead.FirstOrDefault(x => x.AnnounceId.Id == id);
+        
+            if (read == null || read2 == null || (!(read.UserId == user) && read2.Id == anouncement.Id))
             {
                 anouncement.CountRe++;
-                read.UserId = user;
-                read.AnnounceId = anouncement;
-                db.StudentRead.Add(read);
+                read1.UserId = user;
+                read1.AnnounceId = anouncement;
+                db.StudentRead.Add(read1);
                 db.SaveChanges();
             }
 
@@ -57,13 +61,12 @@ namespace CW2.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            vm.announcement = anouncement;
-
             if (anouncement == null)
             {
                 return HttpNotFound();
             }
 
+            vm.announcement = anouncement;
             return View(vm);
         }
 
@@ -95,6 +98,20 @@ namespace CW2.Controllers
             }
 
             return View(anouncement);
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Anouncement comment = db.Anouncements.Find(id);
+            if (comment == null)
+            {
+                return HttpNotFound();
+            }
+            return View(comment);
         }
 
         // POST: Anouncements/Edit/5
