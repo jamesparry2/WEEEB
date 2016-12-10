@@ -20,7 +20,6 @@ namespace CW2.Migrations
             createRoles(context);
             AddStudnet(context);
             AddLecturer(context);
-
         }
 
         //A method to create the roles for the application
