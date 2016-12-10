@@ -43,18 +43,21 @@ namespace CW2.Controllers
             //Finds which user we got
             string currentUser = User.Identity.GetUserId();
             ApplicationUser user = db.Users.FirstOrDefault(x => x.Id == currentUser);
-
             StudentRead read = db.StudentRead.FirstOrDefault(x => x.UserId.Id == currentUser);
-            StudentRead read2 = db.StudentRead.FirstOrDefault(x => x.AnnounceId.Id == id);
-        
-            if (read == null || read2 == null || (!(read.UserId == user) && read2.Id == anouncement.Id))
-            {
-                anouncement.CountRe++;
-                read1.UserId = user;
-                read1.AnnounceId = anouncement;
-                db.StudentRead.Add(read1);
-                db.SaveChanges();
-            }
+
+            read1.AnnounceId = anouncement;
+            read1.UserId = user;
+            db.StudentRead.Add(read1);
+            db.SaveChanges();
+
+            var counte = (from db in db.StudentRead
+                          where db.AnnounceId.Id == anouncement.Id
+                          select db.UserId.Id).AsEnumerable();
+
+            var output = counte.Distinct().Count();
+
+            anouncement.CountRe = output;
+            
 
             if (id == null)
             {
