@@ -5,6 +5,4 @@
             $('#tableDiv').Ajax.JavaScriptStringEncode(result);
         }
     });
-
-
 })

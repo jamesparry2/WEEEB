@@ -10,15 +10,21 @@ namespace CW2.Models
 {
     public class Comment
     {
+        [ScaffoldColumn(false)]
         public int Id { get; set; }
 
-        [Display(Name = "Comment Description")]
+        [Display(Name = "Comments")]
+        [Required(ErrorMessage = "Please enter content for the comment!")]
+        [StringLength(120, ErrorMessage = "Please ensure that the Description does not exced 120")]
         public string CommentDes { get; set; }
 
+        [ScaffoldColumn(false)]
         public int CompareFig { get; set; }
 
+        [ScaffoldColumn(false)]
         public virtual ApplicationUser Student {get;set; }
 
+        [ScaffoldColumn(false)]
         public virtual Anouncement announc { get; set; }
 
     }

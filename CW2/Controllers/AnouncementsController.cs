@@ -21,6 +21,7 @@ namespace CW2.Controllers
         {
 
             StudentRead Read1 = new StudentRead();
+            //ApplicationUser Users = db.Users.Find();
 
             //Finds which user we got
             string CurrentUser = User.Identity.GetUserId();
@@ -34,6 +35,11 @@ namespace CW2.Controllers
             var Counte = (from db in db.StudentRead
                           where db.AnnounceId.Id == Anouncement.Id
                           select db.UserId.Id).AsEnumerable();
+
+            var AllUsers = (from db in db.Users
+                            select db.Id).AsEnumerable();
+
+            var NotRead = AllUsers.Except(Counte);
 
             return Counte;
         }
