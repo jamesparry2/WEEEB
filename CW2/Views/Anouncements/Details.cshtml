@@ -37,6 +37,15 @@
     </dl>
 </div>
 
+@if (ViewContext.HttpContext.User.IsInRole("Lecturer"))
+{
+    <div vlass="progressBarSeen">
+        <p>Views: @(ViewBag.Seen)%</p>
+        <div class ="progress">
+            <div class="progress-bar" role="progressbar" style="width:@(Html.AttributeEncode(ViewBag.Seen))%"></div>
+        </div>
+    </div>
+}
 
 <div id = "tableDiv">@Html.Action("BuildTable", new { id = Url.RequestContext.RouteData.Values["id"] })</div>
 

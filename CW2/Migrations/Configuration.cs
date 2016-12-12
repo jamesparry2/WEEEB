@@ -15,6 +15,7 @@ namespace CW2.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
+        // A method runs when Update is called which calls the 3 methods CreateRoles(), AddStudnet() and Add Lecturer()
         protected override void Seed(CW2.Models.ApplicationDbContext context)
         {
             CreateRoles(context);

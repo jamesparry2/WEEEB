@@ -1,12 +1,12 @@
 ﻿@model CW2.Models.AnouncementDetailView
 
-@Html.DisplayFor(model => model.Role.Name)
+@Html.DisplayFor(model => model.Read.UserId.UserName)
 
 <table class="tabele table-striped">
-    @foreach(var item in Model.Users)
+    @foreach(var item in Model.Read.UserId.UserName)
     {
         <tr>
-            <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+            <td>@Html.DisplayFor(model => model.Read.UserId.UserName)</td>
         </tr>
     }
 

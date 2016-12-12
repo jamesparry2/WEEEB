@@ -15,6 +15,9 @@
                 @Html.DisplayFor(modelItem => item.CommentDes)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Student.UserName)
+            </td>
+            <td>
                 @if (item.Student.UserName == (this.User.Identity.Name))
                 {
                     @Html.ActionLink("Edit", "Edit", "Comments", new { id = item.Id }, null) 

@@ -28,24 +28,36 @@ namespace CW2.Controllers
             StudentRead Read1 = new StudentRead();
             string CurrentUser = User.Identity.GetUserId();
             ApplicationUser Users = db.Users.FirstOrDefault(x => x.Id == CurrentUser);
-
-            Read1.AnnounceId = Anouncement;
-            Read1.UserId = Users;
-            db.StudentRead.Add(Read1);
-            db.SaveChanges();
+            var UsersInRole = db.Roles.SingleOrDefault(r => r.Name == "Student").Users;
+            var Students = UsersInRole.Count;
+            if (User.IsInRole("Student"))
+            {
+                Read1.AnnounceId = Anouncement;
+                Read1.UserId = Users;
+                db.StudentRead.Add(Read1);
+                db.SaveChanges();
+            }
 
             var Counte = (from db in db.StudentRead
                           where db.AnnounceId.Id == Anouncement.Id
                           select db.UserId.Id).AsEnumerable();
+
+            ViewBag.Seen = Math.Round(100f * ((float)Counte.Distinct().Count() / (float)Students));
+
             /*
             var AllUsers = (from db in db.Users
                             select db.Id).AsEnumerable();
 
             var NotRead = AllUsers.Except(Counte);
             */
-
             return Counte;
         }
+
+        public ActionResult UsersWhoHaveNotViewed()
+        {
+            return PartialView("_StudentCounter");
+        }
+
 
         /*
          * A method that takes an int in as the parameter that will be the Anouncement ID, it will
@@ -93,6 +105,8 @@ namespace CW2.Controllers
             {
                 return HttpNotFound();
             }
+
+            //return PartialView("_StudentCounter", HowMany(anouncement));
 
             var Output = HowMany(anouncement).Distinct().Count();
             anouncement.CountRe = Output;

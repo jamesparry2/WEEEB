@@ -14,6 +14,8 @@ namespace CW2.Models
         public virtual Anouncement announcement { get; set; }
         [ScaffoldColumn(false)]
         public virtual Comment comment { get; set; }
+        [ScaffoldColumn(false)]
+        public virtual StudentRead Read { get; set; }
 
         public AnouncementDetailView() {
             announcement = new Anouncement();
