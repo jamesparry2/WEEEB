@@ -16,10 +16,15 @@ namespace CW2.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /*
+         * A method that creates a List of Comments which takes a Comment Object as the Parameter
+         * which pulls the information needed from the Comment Object. It then finds the current user
+         * and assigns the comment to that users. Saves it the DB and, using a LINQ command, updates 
+         * the table with the new information and returns it
+         */
         private List<Comment> AjaxMethod(Comment Comment)
         {
             int Compare = Comment.CompareFig;
-
             string Store = Comment.CommentDes;
 
             string currentUser = User.Identity.GetUserId();
@@ -66,11 +71,13 @@ namespace CW2.Controllers
             return View();
         }
 
+        /*
+         * A standard CRUD created Method from the MVC Framework 
+         */
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,CommentDes")] Comment comment)
         {
-
             if (ModelState.IsValid)
             {
                 string store = Server.HtmlEncode(comment.CommentDes);
@@ -80,12 +87,17 @@ namespace CW2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(comment);
         }
 
+        /*
+         * An AJAXMethod which has the Data Annotation Authorize and ensure secuirty with the ValidateAntiForgeryToken 
+         * and then Posts it tot the Database. It Binds the information CompareFig and CommentDes to the the Comment #
+         * Object
+         */
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Lecturer,Student")]
         public ActionResult AJAXCreate([Bind(Include = "CompareFig,CommentDes")] Comment comment)
         {
             if (ModelState.IsValid)

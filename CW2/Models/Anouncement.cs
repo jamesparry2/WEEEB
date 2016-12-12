@@ -8,6 +8,7 @@ namespace CW2.Models
 {
     public class Anouncement
     {
+        
         [ScaffoldColumn(false)]
         public int Id { get; set; }
 

@@ -17,33 +17,41 @@ namespace CW2.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /*
+         * Instantiate a StudentRead Object and then finds the currentuser in that Instances, we
+         * then assign that User to the Object and then perform a LINQ command to find the Users who
+         * have read that page, once done return that list to get Distinct.Count to find the total of
+         * people who have viewed that page.
+        */
         private IEnumerable<string> HowMany(Anouncement Anouncement)
         {
-
             StudentRead Read1 = new StudentRead();
-            //ApplicationUser Users = db.Users.Find();
-
-            //Finds which user we got
             string CurrentUser = User.Identity.GetUserId();
-            ApplicationUser user = db.Users.FirstOrDefault(x => x.Id == CurrentUser);
+            ApplicationUser Users = db.Users.FirstOrDefault(x => x.Id == CurrentUser);
 
             Read1.AnnounceId = Anouncement;
-            Read1.UserId = user;
+            Read1.UserId = Users;
             db.StudentRead.Add(Read1);
             db.SaveChanges();
 
             var Counte = (from db in db.StudentRead
                           where db.AnnounceId.Id == Anouncement.Id
                           select db.UserId.Id).AsEnumerable();
-
+            /*
             var AllUsers = (from db in db.Users
                             select db.Id).AsEnumerable();
 
             var NotRead = AllUsers.Except(Counte);
+            */
 
             return Counte;
         }
 
+        /*
+         * A method that takes an int in as the parameter that will be the Anouncement ID, it will
+         * then loop through the Comment Database and find all Comments that are associated with that
+         * ID and return it as a List of Comments
+         */
         private List<Comment> TableContent(int id)
         {
             var SpecifcCom = (from d in db.Comments
@@ -53,17 +61,24 @@ namespace CW2.Controllers
             return SpecifcCom;
         }
 
+        //A method that returns a View for Announcements in a ToLists() 
         public ActionResult Index()
         {
             return View(db.Anouncements.ToList());
         }
 
+        //A ActionResult Method that constructs a Partial View and creates the List from the TableContent
         public ActionResult BuildTable(int id)
         {
             return PartialView("_CommentSection", TableContent(id));
         }
 
-        // GET: Anouncements/Details/5
+        /*
+         * A ActionResults that will Display the page that contains the Announcement at the top and Display all the 
+         * comments at the Bottom. It takes in a int as a parameter but performs a check to see if there is a int in the 
+         * URL. Then uses the HowMany() method to find how many uniqe views there are for this announcement and then using a
+         * AnounceDetailView model to display it all on the page
+         */
         public ActionResult Details(int? id)
         {
             AnouncementDetailView vm = new AnouncementDetailView();
@@ -115,6 +130,7 @@ namespace CW2.Controllers
             return View(anouncement);
         }
 
+        //A method to allow us to edit the announcement when we pass the Id into 
         public ActionResult Edit(int? id)
         {
             if (id == null)
