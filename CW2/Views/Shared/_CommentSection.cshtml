@@ -15,8 +15,12 @@
                 @Html.DisplayFor(modelItem => item.CommentDes)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", "Comments", new { id = item.Id }, null) |
-                @Html.ActionLink("Delete", "Delete", "Comments" , new { id = item.Id }, null)
+                @if (item.Student.UserName == (this.User.Identity.Name))
+                {
+                    @Html.ActionLink("Edit", "Edit", "Comments", new { id = item.Id }, null) 
+                    <b>|</b>
+                    @Html.ActionLink("Delete", "Delete", "Comments", new { id = item.Id }, null)
+                }
             </td>
         </tr>
     }

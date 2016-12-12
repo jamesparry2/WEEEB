@@ -293,8 +293,9 @@
     <Content Include="Views\Comments\Details.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
-    <Content Include="Views\Shared\_CommentSection.cshtml" />
     <Content Include="Views\Shared\_StudentCounter.cshtml" />
+    <Content Include="Views\Shared\_StudentsWhoHaveNot.cshtml" />
+    <Content Include="Views\Shared\_CommentSection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

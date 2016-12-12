@@ -17,13 +17,13 @@ namespace CW2.Migrations
 
         protected override void Seed(CW2.Models.ApplicationDbContext context)
         {
-            createRoles(context);
+            CreateRoles(context);
             AddStudnet(context);
             AddLecturer(context);
         }
 
         //A method to create the roles for the application
-        void createRoles(CW2.Models.ApplicationDbContext context)
+        void CreateRoles(CW2.Models.ApplicationDbContext context)
         {
             context.Roles.AddOrUpdate(r => r.Name,
                 new IdentityRole { Name = "Lecturer" },
@@ -36,13 +36,13 @@ namespace CW2.Migrations
         void AddLecturer(CW2.Models.ApplicationDbContext context)
         {
             var Lecturer1 = new ApplicationUser { UserName = "Lecturer1@email.com" };
-            var um1 = new UserManager<ApplicationUser>(
+            var Um1 = new UserManager<ApplicationUser>(
                 new UserStore<ApplicationUser>(context));
-            um1.Create(Lecturer1, "password");
+            Um1.Create(Lecturer1, "password");
 
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var id1 = userManager.FindByName("Lecturer1@email.com");
-            um1.AddToRole(id1.Id, "Lecturer");
+            Um1.AddToRole(id1.Id, "Lecturer");
 
         }
 
@@ -50,40 +50,40 @@ namespace CW2.Migrations
         //their roles to them.        
         void AddStudnet(CW2.Models.ApplicationDbContext context)
         {
-            var student1 = new ApplicationUser { UserName = "Student1@email.com" };
-            var student2 = new ApplicationUser { UserName = "Student2@email.com" };
-            var student3 = new ApplicationUser { UserName = "Student3@email.com" };
-            var student4 = new ApplicationUser { UserName = "Student4@email.com" };
-            var student5 = new ApplicationUser { UserName = "Student5@email.com" };
+            var Student1 = new ApplicationUser { UserName = "Student1@email.com" };
+            var Student2 = new ApplicationUser { UserName = "Student2@email.com" };
+            var Student3 = new ApplicationUser { UserName = "Student3@email.com" };
+            var Student4 = new ApplicationUser { UserName = "Student4@email.com" };
+            var Student5 = new ApplicationUser { UserName = "Student5@email.com" };
 
-            var um1 = new UserManager<ApplicationUser>(
+            var Um1 = new UserManager<ApplicationUser>(
                 new UserStore<ApplicationUser>(context));
-            var um2 = new UserManager<ApplicationUser>(
+            var Um2 = new UserManager<ApplicationUser>(
                 new UserStore<ApplicationUser>(context));
-            var um3 = new UserManager<ApplicationUser>(
+            var Um3 = new UserManager<ApplicationUser>(
                 new UserStore<ApplicationUser>(context));
-            var um4 = new UserManager<ApplicationUser>(
+            var Um4 = new UserManager<ApplicationUser>(
                 new UserStore<ApplicationUser>(context));
-            var um5 = new UserManager<ApplicationUser>(
+            var Um5 = new UserManager<ApplicationUser>(
                 new UserStore<ApplicationUser>(context));
 
-            um1.Create(student1, "password");
-            um2.Create(student2, "password");
-            um3.Create(student3, "password");
-            um4.Create(student4, "password");
-            um5.Create(student5, "password");
+            Um1.Create(Student1, "password");
+            Um2.Create(Student2, "password");
+            Um3.Create(Student3, "password");
+            Um4.Create(Student4, "password");
+            Um5.Create(Student5, "password");
 
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            var id1 = userManager.FindByName("Student1@email.com");
-            var id2 = userManager.FindByName("Student2@email.com");
-            var id3 = userManager.FindByName("Student3@email.com");
-            var id4 = userManager.FindByName("Student4@email.com");
-            var id5 = userManager.FindByName("Student5@email.com");
-            um1.AddToRole(id1.Id, "Student");
-            um2.AddToRole(id2.Id, "Student");
-            um3.AddToRole(id3.Id, "Student");
-            um4.AddToRole(id4.Id, "Student");
-            um5.AddToRole(id5.Id, "Student");
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var Id1 = UserManager.FindByName("Student1@email.com");
+            var Id2 = UserManager.FindByName("Student2@email.com");
+            var Id3 = UserManager.FindByName("Student3@email.com");
+            var Id4 = UserManager.FindByName("Student4@email.com");
+            var Id5 = UserManager.FindByName("Student5@email.com");
+            Um1.AddToRole(Id1.Id, "Student");
+            Um2.AddToRole(Id2.Id, "Student");
+            Um3.AddToRole(Id3.Id, "Student");
+            Um4.AddToRole(Id4.Id, "Student");
+            Um5.AddToRole(Id5.Id, "Student");
         }
     }
 }

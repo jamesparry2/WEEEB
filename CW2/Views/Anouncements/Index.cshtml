@@ -33,11 +33,14 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit Announcement", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("View Comments", "Details", new { id=item.Id }) |
+            @if(ViewContext.HttpContext.User.IsInRole("Lecturer")){
+                @Html.ActionLink("Edit Announcement", "Edit", new { id = item.Id })
+                <b>|</b>
+            }
+            @Html.ActionLink("View Comments", "Details", new { id=item.Id })
             @if (ViewContext.HttpContext.User.IsInRole("Lecturer"))
             {
-               
+                <b>|</b>
                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             }
         </td>

@@ -2,7 +2,9 @@
     $.ajax({
         url: '/Anouncements/BuildTable',
         success: function (result) {
-            $('#tableDiv').html(result);
+            $('#tableDiv').Ajax.JavaScriptStringEncode(result);
         }
     });
+
+
 })

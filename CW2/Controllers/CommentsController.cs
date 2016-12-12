@@ -16,6 +16,28 @@ namespace CW2.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        private List<Comment> AjaxMethod(Comment Comment)
+        {
+            int Compare = Comment.CompareFig;
+
+            string Store = Comment.CommentDes;
+
+            string currentUser = User.Identity.GetUserId();
+            ApplicationUser user = db.Users.FirstOrDefault(
+                x => x.Id == currentUser);
+            Comment.Student = user;
+            Comment.CommentDes = Store;
+
+            db.Comments.Add(Comment);
+            db.SaveChanges();
+
+            var Specfic = (from d in db.Comments
+                           where d.CompareFig == Compare
+                           select d).ToList();
+
+            return Specfic;
+        }
+
         // GET: Comments
         public ActionResult Index()
         {
@@ -51,6 +73,9 @@ namespace CW2.Controllers
 
             if (ModelState.IsValid)
             {
+                string store = Server.HtmlEncode(comment.CommentDes);
+                comment.CommentDes = store;
+
                 db.Comments.Add(comment);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -65,21 +90,7 @@ namespace CW2.Controllers
         {
             if (ModelState.IsValid)
             {
-                int compare = comment.CompareFig;
-
-                string currentUser = User.Identity.GetUserId();
-                ApplicationUser user = db.Users.FirstOrDefault(
-                    x => x.Id == currentUser);
-                comment.Student = user;
-
-                db.Comments.Add(comment);
-                db.SaveChanges();
-
-                var specfic = (from d in db.Comments
-                               where d.CompareFig == compare
-                               select d).ToList();
-
-                return PartialView("_CommentSection", specfic);
+                return PartialView("_CommentSection", AjaxMethod(comment));
             }
             return new EmptyResult();
         }

@@ -25,20 +25,20 @@
         <dd>
             @Html.DisplayFor(model => model.announcement.Description)
         </dd>
-
+        @if(ViewContext.HttpContext.User.IsInRole("Lecturer"))
+        {
         <dt>
             @Html.DisplayNameFor(model => model.announcement.CountRe)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.announcement.CountRe)
         </dd>
-
+        }
     </dl>
 </div>
 
 
-<div id = "tableDiv">@Html.Action("BuildTable", new { id = Url.RequestContext.RouteData.Values["id"] } )</div>
+<div id = "tableDiv">@Html.Action("BuildTable", new { id = Url.RequestContext.RouteData.Values["id"] })</div>
 
 <div id="createTable">
     @using (Ajax.BeginForm("AJAXCreate", "Comments", new AjaxOptions

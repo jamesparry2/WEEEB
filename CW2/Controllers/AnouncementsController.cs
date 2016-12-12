@@ -17,7 +17,36 @@ namespace CW2.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Anouncements
+        private IEnumerable<string> HowMany(Anouncement Anouncement)
+        {
+
+            StudentRead Read1 = new StudentRead();
+
+            //Finds which user we got
+            string CurrentUser = User.Identity.GetUserId();
+            ApplicationUser user = db.Users.FirstOrDefault(x => x.Id == CurrentUser);
+
+            Read1.AnnounceId = Anouncement;
+            Read1.UserId = user;
+            db.StudentRead.Add(Read1);
+            db.SaveChanges();
+
+            var Counte = (from db in db.StudentRead
+                          where db.AnnounceId.Id == Anouncement.Id
+                          select db.UserId.Id).AsEnumerable();
+
+            return Counte;
+        }
+
+        private List<Comment> TableContent(int id)
+        {
+            var SpecifcCom = (from d in db.Comments
+                              where d.CompareFig == id
+                              select d).ToList();
+
+            return SpecifcCom;
+        }
+
         public ActionResult Index()
         {
             return View(db.Anouncements.ToList());
@@ -25,12 +54,7 @@ namespace CW2.Controllers
 
         public ActionResult BuildTable(int id)
         {
-
-            var specifcCom = (from d in db.Comments
-                              where d.CompareFig == id
-                              select d).ToList();
-
-            return PartialView("_CommentSection", specifcCom);
+            return PartialView("_CommentSection", TableContent(id));
         }
 
         // GET: Anouncements/Details/5
@@ -38,27 +62,7 @@ namespace CW2.Controllers
         {
             AnouncementDetailView vm = new AnouncementDetailView();
             Anouncement anouncement = db.Anouncements.Find(id);
-            StudentRead read1 = new StudentRead();
-
-            //Finds which user we got
-            string currentUser = User.Identity.GetUserId();
-            ApplicationUser user = db.Users.FirstOrDefault(x => x.Id == currentUser);
-            StudentRead read = db.StudentRead.FirstOrDefault(x => x.UserId.Id == currentUser);
-
-            read1.AnnounceId = anouncement;
-            read1.UserId = user;
-            db.StudentRead.Add(read1);
-            db.SaveChanges();
-
-            var counte = (from db in db.StudentRead
-                          where db.AnnounceId.Id == anouncement.Id
-                          select db.UserId.Id).AsEnumerable();
-
-            var output = counte.Distinct().Count();
-
-            anouncement.CountRe = output;
             
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -69,6 +73,8 @@ namespace CW2.Controllers
                 return HttpNotFound();
             }
 
+            var Output = HowMany(anouncement).Distinct().Count();
+            anouncement.CountRe = Output;
             vm.announcement = anouncement;
             return View(vm);
         }
