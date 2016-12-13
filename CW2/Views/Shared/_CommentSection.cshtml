@@ -1,9 +1,12 @@
 ﻿@model IEnumerable<CW2.Models.Comment>
 
-<table class="table">
+<table class="table table-hover table-bordered table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.CommentDes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.UserName)
         </th>
         <th></th>
     </tr>
@@ -17,6 +20,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Student.UserName)
             </td>
+
             <td>
                 @if (item.Student.UserName == (this.User.Identity.Name))
                 {

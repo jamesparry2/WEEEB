@@ -1,23 +1,63 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    
+    background-color:rgba(255, 255, 225, 0.9);
 }
 
-/* Set padding to keep content from hitting the edges */
+.navbar {
+    background-color:grey;
+}
+
+.nav.navbar-nav li a {
+    color: wheat;
+}
+
+.navbar-default .navbar-brand {
+  color: wheat;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: black;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #080011;
+}
+
+#top, #bottom, #left, #right {
+	background: #a5ebff;
+	position: fixed;
+    background-color:grey;
+	}
+#left, #right {
+	top: 0; bottom: 0;
+	width: 40px;
+}
+#left { 
+    left: 0;
+}
+#right { right: 0; }
+		
+#top, #bottom {
+	left: 0; right: 0;
+	height: 40px;
+	}
+	#top { top: 0; }
+	#bottom { bottom: 0; }
+
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 45px;
+    padding-right: 45px;
+    padding-bottom: 45px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
+
 .dl-horizontal dt {
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {

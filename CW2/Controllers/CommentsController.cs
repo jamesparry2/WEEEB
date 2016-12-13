@@ -128,11 +128,16 @@ namespace CW2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CommentDes")] Comment comment)
+        public ActionResult Edit([Bind(Include = "Id,CommentDes,CompareFig")] Comment comment)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(comment).State = EntityState.Modified;
+                var CurrentComment = db.Comments.Find(comment.Id);
+                CurrentComment.Id = comment.Id;
+                CurrentComment.CompareFig = CurrentComment.CompareFig;
+                CurrentComment.CommentDes = comment.CommentDes;
+
+                db.Entry(CurrentComment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

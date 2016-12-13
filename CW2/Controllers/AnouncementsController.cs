@@ -30,6 +30,7 @@ namespace CW2.Controllers
             ApplicationUser Users = db.Users.FirstOrDefault(x => x.Id == CurrentUser);
             var UsersInRole = db.Roles.SingleOrDefault(r => r.Name == "Student").Users;
             var Students = UsersInRole.Count;
+
             if (User.IsInRole("Student"))
             {
                 Read1.AnnounceId = Anouncement;
