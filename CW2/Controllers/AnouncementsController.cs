@@ -21,7 +21,7 @@ namespace CW2.Controllers
          * Instantiate a StudentRead Object and then finds the currentuser in that Instances, we
          * then assign that User to the Object and then perform a LINQ command to find the Users who
          * have read that page, once done return that list to get Distinct.Count to find the total of
-         * people who have viewed that page.
+         * people who have viewed that page and display who haven't read it.
         */
         private IEnumerable<string> HowMany(Anouncement Anouncement)
         {
@@ -29,6 +29,7 @@ namespace CW2.Controllers
             string CurrentUser = User.Identity.GetUserId();
             ApplicationUser Users = db.Users.FirstOrDefault(x => x.Id == CurrentUser);
             var UsersInRole = db.Roles.SingleOrDefault(r => r.Name == "Student").Users;
+            var LectId = db.Roles.SingleOrDefault(l => l.Name == "Lecturer");
             var Students = UsersInRole.Count;
 
             if (User.IsInRole("Student"))
@@ -39,19 +40,22 @@ namespace CW2.Controllers
                 db.SaveChanges();
             }
 
-            var Counte = (from db in db.StudentRead
+            var Count = (from db in db.StudentRead
                           where db.AnnounceId.Id == Anouncement.Id
                           select db.UserId.Id).AsEnumerable();
 
-            ViewBag.Seen = Math.Round(100f * ((float)Counte.Distinct().Count() / (float)Students));
+            var Seen = (from db in db.StudentRead
+                        where db.AnnounceId.Id == Anouncement.Id
+                        select db.UserId).ToList();
 
-            /*
-            var AllUsers = (from db in db.Users
-                            select db.Id).AsEnumerable();
+            var AllUsers = db.Users.ToList();
+            var Lecturer = db.Users.Where(Lec => Lec.Roles.Select(Rol => Rol.RoleId).Contains(LectId.Id));
+            var RemovedNots = AllUsers.Except(Seen);
 
-            var NotRead = AllUsers.Except(Counte);
-            */
-            return Counte;
+            ViewBag.NotRead = RemovedNots.Except(Lecturer);
+            ViewBag.Seen = Math.Round(100f * ((float)Seen.Distinct().Count() / (float)Students));
+            
+            return Count;
         }
 
         public ActionResult UsersWhoHaveNotViewed()

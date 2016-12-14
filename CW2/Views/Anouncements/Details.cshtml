@@ -38,11 +38,18 @@
 
 @if (ViewContext.HttpContext.User.IsInRole("Lecturer"))
 {
-    <div vlass="progressBarSeen">
+    <div class="progressBarSeen">
         <p>Views: @(ViewBag.Seen)%</p>
         <div class ="progress">
             <div class="progress-bar" role="progressbar" style="width:@(Html.AttributeEncode(ViewBag.Seen))%"></div>
         </div>
+    </div>
+    <div>
+        @foreach(var item in ViewBag.NotRead){
+            <ul>
+                <li>@item.UserName</li>
+            </ul>
+        }
     </div>
 }
 
