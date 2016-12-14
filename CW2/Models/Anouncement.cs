@@ -30,7 +30,7 @@ namespace CW2.Models
         public int CountRe { get; set; }
 
         [ScaffoldColumn(false)]
-        public virtual IEnumerable<Comment> comment { get; set; }
+        public virtual IEnumerable<Comment> Comment { get; set; }
 
     }
 }
