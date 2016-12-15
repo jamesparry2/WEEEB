@@ -11,15 +11,15 @@ namespace CW2.Models
     public class AnouncementDetailView
     {
         [ScaffoldColumn(false)]
-        public virtual Anouncement announcement { get; set; }
+        public virtual Anouncement Announcement { get; set; }
         [ScaffoldColumn(false)]
-        public virtual Comment comment { get; set; }
+        public virtual Comment Comment { get; set; }
         [ScaffoldColumn(false)]
         public virtual StudentRead Read { get; set; }
 
         public AnouncementDetailView() {
-            announcement = new Anouncement();
-            comment = new Comment();
+            Announcement = new Anouncement();
+            Comment = new Comment();
         }
 
     }

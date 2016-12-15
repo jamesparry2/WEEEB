@@ -82,3 +82,4 @@ c:\users\james\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.dll
 c:\users\james\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.pdb
 C:\Users\James\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.csproj.GenerateResource.Cache
 C:\Users\James\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.Migrations._0.resources
+C:\Users\James\documents\visual studio 2015\Projects\CW2\CW2\obj\Debug\CW2.Migrations._121.resources

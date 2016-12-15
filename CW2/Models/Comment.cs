@@ -25,7 +25,7 @@ namespace CW2.Models
         public virtual ApplicationUser Student {get;set; }
 
         [ScaffoldColumn(false)]
-        public virtual Anouncement announc { get; set; }
+        public virtual Anouncement Announc { get; set; }
 
     }
 }

@@ -115,7 +115,7 @@ namespace CW2.Controllers
 
             var Output = HowMany(anouncement).Distinct().Count();
             anouncement.CountRe = Output;
-            vm.announcement = anouncement;
+            vm.Announcement = anouncement;
             return View(vm);
         }
 
